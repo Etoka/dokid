@@ -7,10 +7,10 @@ class ServiceManager:
         self.scandirs = scandirs
         self.services = []
 
-    def run_from_dir_nocheck():
+    def run_from_dir_nocheck(self):
         '''Runs all services found in directories listed in self.scandirs without checking for requirements, dependencies, etc.'''
         for i in self.scandirs:
             for j in os.scandir(i):
-                self.services.append(create_service(f"{i}/{j}"))
+                self.services.append(create_service(f"{i}/{j}", self))
         for k in self.services:
             k.start()
